@@ -33,7 +33,7 @@ fi
 set -e
 
 ipole="$(dirname "$0")/ipole"
-ipmd5="d0bffe98420749b5e230ef8bf9ddc9da"
+ipmd5="a4ca649826340b54c084a74138c18b04"
 
 input="$1"
 inmd5="$2"
@@ -61,15 +61,31 @@ cat <<EOF | tee ipole.par
 # Common
 dump    ${input}
 outfile image.h5
-nx      400
-ny      400
+
 
 # Emission 1=Pandya, 4=Dexter, others are debug/custom
 emission_type 4
 
-# Sgr A* parameters
-MBH     4.14e6
-dsource 8.127e3
+# # Sgr A* parameters
+# MBH     4.14e6
+# dsource 8.127e3
+# nx      400
+# ny      400
+
+# # FOV from Earth
+# fovx_dsource 200
+# fovy_dsource 200
+
+# M87 parameters
+MBH 6.2e9
+dsource 16.9e6
+nx      320
+ny      320
+
+# FOV from Earth
+fovx_dsource 160
+fovy_dsource 160
+
 freqcgs 230.e9
 M_unit  ${rho0}
 
@@ -92,9 +108,6 @@ thetacam ${theta}
 phicam   0
 rotcam   0
 
-# FOV from Earth
-fovx_dsource 200
-fovy_dsource 200
 
 # Geodesic accuracy parameters
 #eps      0.01
@@ -133,8 +146,8 @@ EOF
 mymd5=$(md5sum "ipole.par" | cut -d' ' -f1)
 >&2 echo "md5(ipole.par) == ${mymd5}"
 
-"${ipole}"        -par ipole.par
-"${ipole}" -check -par ipole.par
+"${ipole}"        -par ipole.par --reverse_field=1
+"${ipole}" -check -par ipole.par --reverse_field=1
 
 mymd5=$(md5sum "image.h5" | cut -d' ' -f1)
 >&2 echo "md5(image.h5) == ${mymd5}"

@@ -17,4 +17,4 @@
 
 dst=$(echo $(basename $PWD) | awk -F_ '{print $3 "/" $1 "_" $2}')
 
-rsync -avP out/ eht.astro.illinois.edu:/bd6/eht/Illinois_SgrA_v3check/${dst}/
+rsync -avP out/ bh.astro.illinois.edu:/data/bh29-fs3/${dst}/

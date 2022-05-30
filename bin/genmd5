@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+model=$1
+modelLoc=/public/avjoshi2/m87
+
+# remove existing md5 file
+rm ${modelLoc}/md5/md5_${model}.tsv
+# retString=''
+for grmhd in ${modelLoc}/${model}/dump_0000????.h5; do
+    dumpnum=$(basename $grmhd)
+    echo "$dumpnum $(md5sum $grmhd | cut -d' ' -f1)" | tee -a ${modelLoc}/md5/md5_${model}.tsv
+    # echo $dumpnum
+    # echo $dumpnum $(echo $grmhd | cut -d' ' -f1)
+    # retString+="$(echo $dumpnum $(md5sum $grmhd | cut -d' ' -f1))"
+    # retString+=$(echo '\n')
+done;
+# echo -e $retString >> ${modelLoc}/md5/md5_${model}.tsv

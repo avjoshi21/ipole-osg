@@ -17,12 +17,15 @@
 
 if [ ! -f par/BATCH.ALL ]; then
 	echo 'Generate parameter file'
-	bin/pargen > par/BATCH.ALL
+	echo $1
+	bin/pargen $1 > par/BATCH.ALL
+	#echo -e "$(bin/pargen $1)\n"
+	# rm par/BATCH.ALL
 fi
 
 if [ ! -f par/*.?00 ]; then
 	echo 'Split parameter file'
-	split -da02 -l3000 par/BATCH.ALL par/batch.p
+	split -da02 -l6000 par/BATCH.ALL par/batch.p
 fi
 
 echo 'Submit jobs'

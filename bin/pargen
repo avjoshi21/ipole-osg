@@ -15,16 +15,20 @@
 # implied.  See the License for the specific language governing
 # permissions and limitations under the License.
 
-d=$(basename "${PWD}" | cut -d_ -f1,2)
-r=/public/ckc/eht/sgra
+# d=$(basename "$1" | cut -d_ -f1,2)
+d=$1
+r=/public/avjoshi2/m87
 
 k="${d:0:-3}"
 w="${d:  -1}"
 
 awk '{if($3=='${w}') {print $1","$2","$4}}' "${r}/rho0/rho0_${k}.tsv" | while read Rh_i_rho0; do
-	for p in "${r}/${d}/"torus.out0.*.h5; do
+	for p in "${r}/${d}/"dump_*.h5; do
+		# echo $p
 		f=$(basename $p)
-		s=${f:11:-3}
+		# echo $f
+		s=${f:9:4}
+		# echo "${r}/md5/md5_${k}_w${w}.tsv"
 		md5=$(awk '{if($1=="'${f}'") {print $2}}' "${r}/md5/md5_${k}_w${w}.tsv")
 		echo stash:///osgconnect${p},${md5},${s},${Rh_i_rho0}
 	done
