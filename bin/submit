@@ -33,6 +33,7 @@ transfer_input_files   = bin/,$(input)
 transfer_output_remaps = "\
 	image.h5=out/$(model)/img_s$(snapshot)_Rh$(Rhigh)_i$(inc).h5"
 
+max_idle=50
 output = log/$(model)/img_s$(snapshot)_Rh$(Rhigh)_i$(inc).out
 error  = log/$(model)/img_s$(snapshot)_Rh$(Rhigh)_i$(inc).err
 log    = log/$(model)/img_s$(snapshot)_Rh$(Rhigh)_i$(inc).log

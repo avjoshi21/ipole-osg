@@ -17,7 +17,7 @@
 
 # d=$(basename "$1" | cut -d_ -f1,2)
 d=$1
-r=/public/avjoshi2/m87
+r=/public/avjoshi2/m87_v1
 
 k="${d:0:-3}"
 w="${d:  -1}"
