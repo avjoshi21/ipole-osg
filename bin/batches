@@ -31,8 +31,8 @@ echo 'Submit jobs'
 for f in par/batch.p??; do
 	g="par/BATCH_${1}.D${f#par/batch.p}"
 	echo -n "$f -> $g"
-	mkdir -p out/$1
-	mkdir -p log/$1
+	mkdir -p /public/avjoshi2/sgra_v3_images/$1
+	mkdir -p /public/avjoshi2/sgra_v3_images/log/$1
 	condor_submit -a "model = $1" bin/submit
 	if [ $? == 1 ]; then
 		echo STOP

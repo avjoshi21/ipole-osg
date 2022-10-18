@@ -30,7 +30,7 @@ awk '{if($3=='${w}') {print $1","$2","$4}}' "${r}/rho0/rho0_${k}.tsv" | while re
 			# echo $p
 			f=$(basename $p)
 			# echo $f
-			s=${f:9:4}
+			s=${f:12:4}
 			# echo "${r}/md5/md5_${k}_w${w}.tsv"
 			md5=$(awk '{if($1=="'${f}'") {print $2}}' "${r}/md5/md5_${d}.tsv")
 			echo stash:///osgconnect${p},${md5},${s},${Rh_i_rho0}
