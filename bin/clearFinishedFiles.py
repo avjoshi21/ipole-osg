@@ -4,7 +4,7 @@ import subprocess
 imagesPerDump=6
 
 pub = "/public/avjoshi2/m87_v1/"
-imLoc = "/home/avjoshi2/ipole-v1/out/"
+imLoc = "/home/avjoshi2/ipole-osg/out/"
 models=sys.argv[1:]
 for model in models:
 	grmhdFiles = sorted(glob.glob(pub+model+"/*.h5"))

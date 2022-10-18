@@ -66,25 +66,25 @@ outfile image.h5
 # Emission 1=Pandya, 4=Dexter, others are debug/custom
 emission_type 4
 
-# # Sgr A* parameters
-# MBH     4.14e6
-# dsource 8.127e3
-# nx      400
-# ny      400
-
-# # FOV from Earth
-# fovx_dsource 200
-# fovy_dsource 200
-
-# M87 parameters
-MBH 6.2e9
-dsource 16.9e6
-nx      320
-ny      320
+# Sgr A* parameters
+MBH     4.14e6
+dsource 8.127e3
+nx      400
+ny      400
 
 # FOV from Earth
-fovx_dsource 160
-fovy_dsource 160
+fovx_dsource 200
+fovy_dsource 200
+
+## M87 parameters
+#MBH 6.2e9
+#dsource 16.9e6
+#nx      320
+#ny      320
+
+## FOV from Earth
+#fovx_dsource 160
+#fovy_dsource 160
 
 freqcgs 230.e9
 M_unit  ${rho0}

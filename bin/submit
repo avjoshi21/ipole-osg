@@ -31,7 +31,7 @@ arguments  = $Fnx(input) $(md5) $(Rhigh) $(inc) $(rho0)
 transfer_executable    = True
 transfer_input_files   = bin/,$(input)
 transfer_output_remaps = "\
-	image.h5=out/$(model)/img_s$(snapshot)_Rh$(Rhigh)_i$(inc).h5"
+	image.h5=/public/avjoshi2/sgra_v3_images/$(model)/img_s$(snapshot)_Rh$(Rhigh)_i$(inc).h5"
 
 max_idle=50
 output = log/$(model)/img_s$(snapshot)_Rh$(Rhigh)_i$(inc).out
