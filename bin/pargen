@@ -24,7 +24,7 @@ w="${d:  -1}"
 cadence=6
 awk '{if($3=='${w}') {print $1","$2","$4}}' "${r}/rho0/rho0_${k}.tsv" | while read Rh_i_rho0; do
 	i=0;
-	for p in "${r}/${d}/"torus.out0.036?0.h5; do
+	for p in "${r}/${d}/"torus.out0.*.h5; do
 		if [ $((${i}%${cadence})) == 0 ]; then
 			#echo $i;
 			# echo $p
