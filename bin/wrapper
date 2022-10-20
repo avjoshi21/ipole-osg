@@ -147,8 +147,8 @@ EOF
 mymd5=$(md5sum "ipole.par" | cut -d' ' -f1)
 >&2 echo "md5(ipole.par) == ${mymd5}"
 
-"${ipole}"        -par ipole.par --reverse_field=1
-"${ipole}" -check -par ipole.par --reverse_field=1
+"${ipole}"        -par ipole.par
+"${ipole}" -check -par ipole.par
 
 mymd5=$(md5sum "image.h5" | cut -d' ' -f1)
 >&2 echo "md5(image.h5) == ${mymd5}"
