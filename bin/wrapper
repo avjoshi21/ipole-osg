@@ -78,16 +78,16 @@ emission_type 4
 # fovy_dsource 200
 
 # M87 parameters
-MBH 6.2e9
-dsource 16.9e6
-nx      320
-ny      320
+MBH 6.5e9
+dsource 16.8e6
+nx      400
+ny      400
 
 # FOV from Earth
-fovx_dsource 160
-fovy_dsource 160
+fovx_dsource 200
+fovy_dsource 200
 
-freqcgs 230.e9
+freqcgs 228.e9
 M_unit  ${rho0}
 
 # e- Temperature, via the Rhigh model described
