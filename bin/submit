@@ -34,9 +34,9 @@ transfer_output_remaps = "\
 	image.h5=$(outputDir)/$(model)/img_s$(snapshot)_Rh$(Rhigh)_i$(inc).h5"
 
 max_idle=50
-output = ${outputDir}/log/$(model)/img_s$(snapshot)_Rh$(Rhigh)_i$(inc).out
-error  = ${outputDir}/log/$(model)/img_s$(snapshot)_Rh$(Rhigh)_i$(inc).err
-log    = ${outputDir}/log/$(model)/img_s$(snapshot)_Rh$(Rhigh)_i$(inc).log
+output = $(outputDir)/log/$(model)/img_s$(snapshot)_Rh$(Rhigh)_i$(inc).out
+error  = $(outputDir)/log/$(model)/img_s$(snapshot)_Rh$(Rhigh)_i$(inc).err
+log    = $(outputDir)/log/$(model)/img_s$(snapshot)_Rh$(Rhigh)_i$(inc).log
 
 universe       = vanilla
 request_memory = 2 GB
