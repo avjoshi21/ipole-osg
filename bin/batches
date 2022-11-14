@@ -34,7 +34,7 @@ for f in par/batch.p??; do
 	echo -n "$f -> $g"
 	mkdir -p ${outputDir}/$1
 	mkdir -p ${outputDir}/log/$1
-	condor_submit -a "model = $1" -a "outputDir ${outputDir}" bin/submit
+	condor_submit -a "model = $1" -a "outputDir = ${outputDir}" bin/submit
 	if [ $? == 1 ]; then
 		echo STOP
 		break # submission error
