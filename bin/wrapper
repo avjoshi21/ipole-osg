@@ -38,8 +38,9 @@ ipmd5="477961d014bf23cd9952cc98b1c83600"
 input="$1"
 inmd5="$2"
 Rhigh="$3"
-theta="$4"
-rho0="$5"
+Rlow="$4"
+theta="$5"
+rho0="$6"
 
 mymd5=$(md5sum "${ipole}" | cut -d' ' -f1)
 if [ x"$mymd5" == x"$ipmd5" ]; then

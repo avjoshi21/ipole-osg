@@ -18,11 +18,12 @@
 # d=$(basename "$1" | cut -d_ -f1,2)
 d=$1
 r=/public/avjoshi2/m87_v1
-
+rlow=10
 k="${d:0:-3}"
 w="${d:  -1}"
 
-awk '{if($3=='${w}') {print $1","$2","$4}}' "${r}/rho0/rho0_${k}.tsv" | while read Rh_i_rho0; do
+#awk '{if($3=='${w}') {print $1","$2","$4}}' "${r}/rho0/rho0_${k}.tsv" | while read Rh_i_rho0; do
+awk '{if(($4=='${w}') && ($2=='${rlow}')) {print $1","$2","$3","$5}}' "${r}/rho0/rho0_${k}.tsv" | while read Rh_i_rho0; do
 	for p in "${r}/${d}/"dump_*.h5; do
 		# echo $p
 		f=$(basename $p)

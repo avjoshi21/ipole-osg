@@ -19,6 +19,7 @@ if [ ! -f par/BATCH.ALL ]; then
 	echo 'Generate parameter file'
 	echo $1
 	bin/pargen $1 > par/BATCH.ALL
+	outputDir=/public/avjoshi2/m87_v1_images
 	#echo -e "$(bin/pargen $1)\n"
 fi
 
@@ -31,9 +32,9 @@ echo 'Submit jobs'
 for f in par/batch.p??; do
 	g="par/BATCH_${1}.D${f#par/batch.p}"
 	echo -n "$f -> $g"
-	mkdir -p out/$1
-	mkdir -p log/$1
-	condor_submit -a "model = $1" bin/submit
+	mkdir -p ${outputDir}/$1
+	mkdir -p ${outputDir}/log/$1
+	condor_submit -a "model = $1" "outputDir = ${outputDir}" bin/submit
 	if [ $? == 1 ]; then
 		echo STOP
 		break # submission error
