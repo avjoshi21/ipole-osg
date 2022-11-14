@@ -91,7 +91,7 @@ freqcgs 230.e9
 M_unit  ${rho0}
 
 # e- Temperature, via the Rhigh model described
-trat_small 1
+trat_small ${Rlow}
 trat_large ${Rhigh}
 
 # Adaptive res, enable by setting a minimum "base" image size
@@ -142,13 +142,15 @@ trace 0
 trace_stride 1
 # Trace file name
 trace_outf trace.h5
+
+reverse_field 0
 EOF
 
 mymd5=$(md5sum "ipole.par" | cut -d' ' -f1)
 >&2 echo "md5(ipole.par) == ${mymd5}"
 
-"${ipole}"        -par ipole.par --reverse_field=1
-"${ipole}" -check -par ipole.par --reverse_field=1
+"${ipole}"        -par ipole.par
+"${ipole}" -check -par ipole.par
 
 mymd5=$(md5sum "image.h5" | cut -d' ' -f1)
 >&2 echo "md5(image.h5) == ${mymd5}"
