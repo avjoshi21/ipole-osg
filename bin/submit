@@ -31,12 +31,12 @@ arguments  = $Fnx(input) $(md5) $(Rhigh) $(Rlow) $(inc) $(rho0)
 transfer_executable    = True
 transfer_input_files   = bin/,$(input)
 transfer_output_remaps = "\
-	image.h5=/public/avjoshi2/m87_v3_images/$(model)/img_s$(snapshot)_Rh$(Rhigh)_Rl$(Rlow)_i$(inc).h5"
+	image.h5=$(outputDir)/$(model)/img_s$(snapshot)_Rh$(Rhigh)_Rl$(Rlow)_i$(inc).h5"
 
 max_idle=50
-output = /public/avjoshi2/m87_v3_images/log/$(model)/img_s$(snapshot)_Rh$(Rhigh)_Rl$(Rlow)_i$(inc).out
-error  = /public/avjoshi2/m87_v3_images/log/$(model)/img_s$(snapshot)_Rh$(Rhigh)_Rl$(Rlow)_i$(inc).err
-log    = /public/avjoshi2/m87_v3_images/log/$(model)/img_s$(snapshot)_Rh$(Rhigh)_Rl$(Rlow)_i$(inc).log
+output = $(outputDir)/log/$(model)/img_s$(snapshot)_Rh$(Rhigh)_Rl$(Rlow)_i$(inc).out
+error  = $(outputDir)/log/$(model)/img_s$(snapshot)_Rh$(Rhigh)_Rl$(Rlow)_i$(inc).err
+log    = $(outputDir)/log/$(model)/img_s$(snapshot)_Rh$(Rhigh)_Rl$(Rlow)_i$(inc).log
 
 universe       = vanilla
 request_memory = 2 GB
