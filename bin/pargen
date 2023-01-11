@@ -21,8 +21,10 @@ r=/public/avjoshi2/m87_v3
 grmhd=/public/ckc/eht/sgra
 k="${d:0:-3}"
 w="${d:  -1}"
-
-awk '{if($4=='${w}') {print $1","$2","$3","$5}}' "${r}/rho0/rho0_${k}.tsv" | while read Rh_i_rho0; do
+rlow=1
+rhigh=10
+#awk '{if($4=='${w}') {print $1","$2","$3","$5}}' "${r}/rho0/rho0_${k}.tsv" | while read Rh_i_rho0; do
+awk '{if($4=='${w}' && $2=='${rlow}' && $1=='${rhigh}') {print $1","$2","$3","$5}}' "${r}/rho0/rho0_${k}.tsv" | while read Rh_i_rho0; do
 	for p in "${grmhd}/${d}/"torus.out0.*[02468].h5; do
 		# echo $p
 		f=$(basename $p)

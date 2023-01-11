@@ -87,7 +87,7 @@ ny      400
 fovx_dsource 200
 fovy_dsource 200
 
-freqcgs 214.e9
+freqcgs 228.e9
 M_unit  ${rho0}
 
 # e- Temperature, via the Rhigh model described

@@ -19,7 +19,7 @@ if [ ! -f par/BATCH.ALL ]; then
 	echo 'Generate parameter file'
 	echo $1
 	bin/pargen $1 > par/BATCH.ALL
-	outputDir=/public/avjoshi2/m87_v3_images_215GHz
+	outputDir=/public/avjoshi2/m87_v3_images
 	#echo -e "$(bin/pargen $1)\n"
 fi
 
