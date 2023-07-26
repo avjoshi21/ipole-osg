@@ -17,19 +17,24 @@
 
 # d=$(basename "$1" | cut -d_ -f1,2)
 d=$1
-r=/public/avjoshi2/m87_v1
+r=/home/abhishek.joshi/sgra_v5
 
 k="${d:0:-3}"
 w="${d:  -1}"
-
+cadence=6
 awk '{if($3=='${w}') {print $1","$2","$4}}' "${r}/rho0/rho0_${k}.tsv" | while read Rh_i_rho0; do
-	for p in "${r}/${d}/"dump_*.h5; do
-		# echo $p
-		f=$(basename $p)
-		# echo $f
-		s=${f:9:4}
-		# echo "${r}/md5/md5_${k}_w${w}.tsv"
-		md5=$(awk '{if($1=="'${f}'") {print $2}}' "${r}/md5/md5_${k}.tsv")
-		echo stash:///osgconnect${p},${md5},${s},${Rh_i_rho0}
+	i=0;
+	for p in "${r}/${d}/"torus.out0.*.h5; do
+		if [ $((${i}%${cadence})) == 0 ]; then
+			#echo $i;
+			# echo $p
+			f=$(basename $p)
+			# echo $f
+			s=${f:11:5}
+			# echo "${r}/md5/md5_${k}_w${w}.tsv"
+			md5=$(awk '{if($1=="'${f}'") {print $2}}' "${r}/md5/md5_${d}.tsv")
+			echo ${p},${md5},${s},${Rh_i_rho0}
+		fi
+		i=$((++i))
 	done
 done

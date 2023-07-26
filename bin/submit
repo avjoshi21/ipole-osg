@@ -31,17 +31,20 @@ arguments  = $Fnx(input) $(md5) $(Rhigh) $(inc) $(rho0)
 transfer_executable    = True
 transfer_input_files   = bin/,$(input)
 transfer_output_remaps = "\
-	image.h5=out/$(model)/img_s$(snapshot)_Rh$(Rhigh)_i$(inc).h5"
+	image.h5=$(outputDir)/$(version)/$(tilt)/$(model)/img_$(model)_s$(snapshot)_Rh$(Rhigh)_i$(inc).h5"
 
 max_idle=50
-output = log/$(model)/img_s$(snapshot)_Rh$(Rhigh)_i$(inc).out
-error  = log/$(model)/img_s$(snapshot)_Rh$(Rhigh)_i$(inc).err
-log    = log/$(model)/img_s$(snapshot)_Rh$(Rhigh)_i$(inc).log
+output = $(logDir)/log/$(version)/$(tilt)/$(model)/img_$(model)_s$(snapshot)_Rh$(Rhigh)_i$(inc).out
+error  = $(logDir)/log/$(version)/$(tilt)/$(model)/img_$(model)_s$(snapshot)_Rh$(Rhigh)_i$(inc).err
+log    = $(logDir)/log/$(version)/$(tilt)/$(model)/img_$(model)_s$(snapshot)_Rh$(Rhigh)_i$(inc).log
 
 universe       = vanilla
 request_memory = 2 GB
 request_disk   = 1 GB
 request_cpus   = 1
+
+Requirements = HAS_SINGULARITY
++SingularityImage = "/cvmfs/singularity.opensciencegrid.org/opensciencegrid/osgvo-el7:latest"
 
 on_exit_hold     = (ExitBySignal == True) || (ExitCode > 1)
 periodic_hold    = ((CurrentTime - EnteredCurrentStatus) > 28800) && (JobStatus == 2)
