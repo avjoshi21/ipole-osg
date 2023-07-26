@@ -3,7 +3,7 @@ import subprocess
 
 imagesPerDump=6
 
-pub = "/public/avjoshi2/m87_v1/"
+pub = "/protected/abhishek.joshi/sgra_v5/"
 imLoc = "/home/avjoshi2/ipole-osg/out/"
 models=sys.argv[1:]
 for model in models:
