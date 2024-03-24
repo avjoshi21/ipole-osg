@@ -18,7 +18,6 @@
 # d=$(basename "$1" | cut -d_ -f1,2)
 d=$1
 r=/home/abhishek.joshi/sgra_v5
-
 k="${d:0:-3}"
 w="${d:  -1}"
 cadence=6

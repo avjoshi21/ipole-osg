@@ -15,12 +15,12 @@
 # implied.  See the License for the specific language governing
 # permissions and limitations under the License.
 
+outputDir=/protected/abhishek.joshi/sgra_v5
+logDir=/home/abhishek.joshi/sgra_v5
 if [ ! -f par/BATCH.ALL ]; then
 	echo 'Generate parameter file'
 	echo $@
 	bin/pargen.py $@ > par/BATCH.ALL
-	outputDir=/protected/abhishek.joshi/sgra_v5
-	logDir=/home/abhishek.joshi/sgra_v5
 	#echo -e "$(bin/pargen $1)\n"
 fi
 if [ ! -f par/*.p00 ]; then
