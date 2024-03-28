@@ -44,7 +44,8 @@ for munitFile in munitFiles:
         except IndexError:
             continue    
         inc,rhigh,rlow,munit=windowData[-4:]
-            
+        if (eval(munit) > 1e50):
+            continue
         md5search = subprocess.run(f"grep {dump} {md5file}",shell=True,capture_output=True)
         md5str=md5search.stdout.decode("utf-8")
         md5 = md5str.split(' ')[0]
