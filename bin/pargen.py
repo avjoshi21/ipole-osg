@@ -33,6 +33,7 @@ for munitFile in munitFiles:
     for grmhdFile in grmhdDirectory[::cadence]:
         if("final" in grmhdFile):
             continue;
+        #grmhdFile = grmhdFile.replace("/protected","osdf:///ospool/PROTECTED")
         dump = grmhdFile.split('/')[-1]
         dumpNum = int(re.search("(\d{5})",dump)[0])
         if (dumpNum < dumpStart or dumpNum > dumpEnd):
@@ -44,9 +45,10 @@ for munitFile in munitFiles:
         except IndexError:
             continue    
         inc,rhigh,rlow,munit=windowData[-4:]
-            
-        md5search = subprocess.run(f"grep {dump} {md5file}",shell=True,capture_output=True)
-        md5str=md5search.stdout.decode("utf-8")
-        md5 = md5str.split(' ')[0]
+        if (eval(munit) > 1e50):
+            continue
+        #md5search = subprocess.run(f"grep {dump} {md5file}",shell=True,capture_output=True)
+        #md5str=md5search.stdout.decode("utf-8")
+        #md5 = md5str.split(' ')[0]
 
-        print(f"{grmhdFile},{md5},{dumpNum:05d},{rhigh},{inc},{munit}")
+        print(f"{grmhdFile},0,{dumpNum:05d},{rhigh},{inc},{munit}")

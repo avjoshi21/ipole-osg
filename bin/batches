@@ -15,15 +15,14 @@
 # implied.  See the License for the specific language governing
 # permissions and limitations under the License.
 
+outputDir=/protected/abhishek.joshi/sgra_v5
+logDir=/home/abhishek.joshi/sgra_v5
 if [ ! -f par/BATCH.ALL ]; then
 	echo 'Generate parameter file'
 	echo $@
 	bin/pargen.py $@ > par/BATCH.ALL
-	outputDir=/protected/abhishek.joshi/sgra_v5
-	logDir=/home/abhishek.joshi/sgra_v5
 	#echo -e "$(bin/pargen $1)\n"
 fi
-
 if [ ! -f par/*.p00 ]; then
 	echo 'Split parameter file'
 	split -da02 -l6000 par/BATCH.ALL par/batch.p
@@ -43,4 +42,3 @@ for f in par/batch.p??; do
 	mv -f "$f" "$g"
 	echo 'DONE'
 done
-rm par/BATCH.ALL
