@@ -26,17 +26,17 @@
 # or run as a command directly `bin/submit`.
 
 executable = bin/wrapper
-arguments  = $Fnx(input) $(md5) $(Rhigh) $(inc) $(rho0)
+arguments  = $Fnx(input) $(md5) $(Rhigh) $(Rlow) $(inc) $(rho0)
 
 transfer_executable    = True
 transfer_input_files   = bin/,$(input)
 transfer_output_remaps = "\
-	image.h5=$(outputDir)/$(version)/$(tilt)/$(model)/img_$(model)_s$(snapshot)_Rh$(Rhigh)_i$(inc).h5"
+	image.h5=$(outputDir)/$(version)/$(tilt)/$(model)/img_$(model)_s$(snapshot)_Rh$(Rhigh)_Rl$(Rlow)_i$(inc).h5"
 
 max_idle=50
-output = $(logDir)/log/$(version)/$(tilt)/$(model)/img_$(model)_s$(snapshot)_Rh$(Rhigh)_i$(inc).out
-error  = $(logDir)/log/$(version)/$(tilt)/$(model)/img_$(model)_s$(snapshot)_Rh$(Rhigh)_i$(inc).err
-log    = $(logDir)/log/$(version)/$(tilt)/$(model)/img_$(model)_s$(snapshot)_Rh$(Rhigh)_i$(inc).log
+output = $(logDir)/log/$(version)/$(tilt)/$(model)/img_$(model)_s$(snapshot)_Rh$(Rhigh)_Rl$(Rlow)_i$(inc).out
+error  = $(logDir)/log/$(version)/$(tilt)/$(model)/img_$(model)_s$(snapshot)_Rh$(Rhigh)_Rl$(Rlow)_i$(inc).err
+log    = $(logDir)/log/$(version)/$(tilt)/$(model)/img_$(model)_s$(snapshot)_Rh$(Rhigh)_Rl$(Rlow)_i$(inc).log
 
 universe       = vanilla
 request_memory = 2 GB
@@ -50,4 +50,4 @@ on_exit_hold     = (ExitBySignal == True) || (ExitCode > 1)
 periodic_hold    = ((CurrentTime - EnteredCurrentStatus) > 28800) && (JobStatus == 2)
 periodic_release = ((CurrentTime - EnteredCurrentStatus) > 60)    && (NumJobStarts < 10)
 
-queue 1 input,md5,snapshot,Rhigh,inc,rho0 from bin/parget |
+queue 1 input,md5,snapshot,Rhigh,Rlow,inc,rho0 from bin/parget |

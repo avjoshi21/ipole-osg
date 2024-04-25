@@ -17,15 +17,16 @@ disk = 'mad' if grmhdModel[0]=='M' else 'sane'
 tilt = sys.argv[3]
 dumpStart = int(sys.argv[4])
 dumpEnd = int(sys.argv[5])
-r="/home/abhishek.joshi/sgra_v5"
+r="/home/abhishek.joshi/m87_v5"
 
 cadence=1
 normBatchSize = 1000
+bh='M87'
 
-munitFilesStr=f"/home/abhishek.joshi/sgra_v5/munits/windows/{ext}/MunitVals_SgrA_{tilt}_{grmhdModel}*.txt"
+munitFilesStr=f"/home/abhishek.joshi/m87_v5/munits/windows/{ext}/MunitVals_{bh}_{tilt}_{grmhdModel}*.txt"
 munitFiles = sorted(glob.glob(munitFilesStr))
-md5file = f"/home/abhishek.joshi/sgra_v5/md5/md5_{ext}_{grmhdModel}_{tilt}.txt"
-# md5file = "/home/abhishek.joshi/sgra_v5/md5/test.txt"
+md5file = f"/home/abhishek.joshi/m87_v5/md5/md5_{ext}_{grmhdModel}_{tilt}.txt"
+# md5file = "/home/abhishek.joshi/m87_v5/md5/test.txt"
 for munitFile in munitFiles:
     munitData = np.loadtxt(munitFile,skiprows=1,dtype=object)
     grmhdDirectoryStr=f"/protected/abhishek.joshi/{ext}/{disk}/{tilt}/{grmhdModel[1:]}/dumps/torus.*.h5"
@@ -51,4 +52,4 @@ for munitFile in munitFiles:
         #md5str=md5search.stdout.decode("utf-8")
         #md5 = md5str.split(' ')[0]
 
-        print(f"{grmhdFile},0,{dumpNum:05d},{rhigh},{inc},{munit}")
+        print(f"{grmhdFile},0,{dumpNum:05d},{rhigh},{rlow},{inc},{munit}")
