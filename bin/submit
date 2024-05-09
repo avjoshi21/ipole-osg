@@ -44,7 +44,7 @@ request_disk   = 1 GB
 request_cpus   = 1
 
 Requirements = HAS_SINGULARITY
-+SingularityImage = "/cvmfs/singularity.opensciencegrid.org/opensciencegrid/osgvo-el7:latest"
+#+SingularityImage = "/cvmfs/singularity.opensciencegrid.org/opensciencegrid/osgvo-el7:latest"
 
 on_exit_hold     = (ExitBySignal == True) || (ExitCode > 1)
 periodic_hold    = ((CurrentTime - EnteredCurrentStatus) > 28800) && (JobStatus == 2)
