@@ -15,7 +15,7 @@
 # implied.  See the License for the specific language governing
 # permissions and limitations under the License.
 
-outputDir=/protected/abhishek.joshi/m87_v5
+outputDir=/home/abhishek.joshi/protected/m87_v5
 logDir=/home/abhishek.joshi/m87_v5
 if [ ! -f par/BATCH.ALL ]; then
 	echo 'Generate parameter file'

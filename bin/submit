@@ -39,9 +39,9 @@ error  = $(logDir)/log/$(version)/$(tilt)/$(model)/img_$(model)_s$(snapshot)_Rh$
 log    = $(logDir)/log/$(version)/$(tilt)/$(model)/img_$(model)_s$(snapshot)_Rh$(Rhigh)_Rl$(Rlow)_i$(inc).log
 
 universe       = vanilla
-request_memory = 2 GB
+request_memory = 3 GB
 request_disk   = 1 GB
-request_cpus   = 1
+request_cpus   = 2
 
 Requirements = HAS_SINGULARITY
 #+SingularityImage = "/cvmfs/singularity.opensciencegrid.org/opensciencegrid/osgvo-el7:latest"

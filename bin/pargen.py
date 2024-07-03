@@ -29,7 +29,7 @@ md5file = f"/home/abhishek.joshi/m87_v5/md5/md5_{ext}_{grmhdModel}_{tilt}.txt"
 # md5file = "/home/abhishek.joshi/m87_v5/md5/test.txt"
 for munitFile in munitFiles:
     munitData = np.loadtxt(munitFile,skiprows=1,dtype=object)
-    grmhdDirectoryStr=f"/protected/abhishek.joshi/{ext}/{disk}/{tilt}/{grmhdModel[1:]}/dumps/torus.*.h5"
+    grmhdDirectoryStr=f"/home/abhishek.joshi/protected/{ext}/{disk}/{tilt}/{grmhdModel[1:]}/dumps/torus.*.h5"
     grmhdDirectory = sorted(glob.glob(grmhdDirectoryStr))
     for grmhdFile in grmhdDirectory[::cadence]:
         if("final" in grmhdFile):
