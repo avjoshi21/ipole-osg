@@ -21,7 +21,8 @@ def lineParser(line):
     vals = line.split(',')
     returnDict={}
     returnDict['rhigh']=vals[-3]
-    returnDict['theta']=vals[-2]
+    returnDict['rlow']=vals[-2]
+    returnDict['theta']=vals[-1]
     grmhdDump=vals[0]
     returnDict['dumpNum']=re.search("(\d{4,5}[_.])",grmhdDump)[0][:-1]
     if re.search("(sane)",grmhdDump,flags=re.I)==None:
