@@ -7,29 +7,29 @@ import subprocess
 import numpy as np
 
 version = sys.argv[1]
-if(version=='base' or version=='v5'):
-    ext="eht_v5"
-elif(version=="focused"):
-    ext="eht_v5_ext"
+if(version=='emhd'):
+    ext="emhd"
+elif(version=="ideal"):
+    ext="ideal"
 
 grmhdModel = sys.argv[2]
 disk = 'mad' if grmhdModel[0]=='M' else 'sane'
 tilt = sys.argv[3]
 dumpStart = int(sys.argv[4])
 dumpEnd = int(sys.argv[5])
-r="/home/abhishek.joshi/m87_v5"
+r="/home/abhishek.joshi/sgra_emhd"
 
 cadence=1
 normBatchSize = 1000
 bh='M87'
 
-munitFilesStr=f"/home/abhishek.joshi/m87_v5/munits/windows/{ext}/MunitVals_{bh}_{tilt}_{grmhdModel}*.txt"
+munitFilesStr=f"/home/abhishek.joshi/sgra_emhd/munits/windows/{ext}/MunitVals_{bh}_{tilt}_{grmhdModel}*.txt"
 munitFiles = sorted(glob.glob(munitFilesStr))
-md5file = f"/home/abhishek.joshi/m87_v5/md5/md5_{ext}_{grmhdModel}_{tilt}.txt"
-# md5file = "/home/abhishek.joshi/m87_v5/md5/test.txt"
+md5file = f"/home/abhishek.joshi/sgra_emhd/md5/md5_{ext}_{grmhdModel}_{tilt}.txt"
+# md5file = "/home/abhishek.joshi/sgra_emhd/md5/test.txt"
 for munitFile in munitFiles:
     munitData = np.loadtxt(munitFile,skiprows=1,dtype=object)
-    grmhdDirectoryStr=f"/home/abhishek.joshi/protected/{ext}/{disk}/{tilt}/{grmhdModel[1:]}/dumps/torus.*.h5"
+    grmhdDirectoryStr=f"/home/abhishek.joshi/protected/{ext}/{disk}/{grmhdModel[1:]}/dumps/torus.*.h5"
     grmhdDirectory = sorted(glob.glob(grmhdDirectoryStr))
     for grmhdFile in grmhdDirectory[::cadence]:
         if("final" in grmhdFile):
