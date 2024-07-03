@@ -21,7 +21,7 @@ r="/home/abhishek.joshi/sgra_emhd"
 
 cadence=1
 normBatchSize = 1000
-bh='M87'
+bh='SgrA'
 
 munitFilesStr=f"/home/abhishek.joshi/sgra_emhd/munits/windows/{ext}/MunitVals_{bh}_{tilt}_{grmhdModel}*.txt"
 munitFiles = sorted(glob.glob(munitFilesStr))
@@ -37,7 +37,7 @@ for munitFile in munitFiles:
         #grmhdFile = grmhdFile.replace("/protected","osdf:///ospool/PROTECTED")
         dump = grmhdFile.split('/')[-1]
         dumpNum = int(re.search("(\d{5})",dump)[0])
-        if (dumpNum < dumpStart or dumpNum > dumpEnd):
+        if (dumpNum < dumpStart or dumpNum >= dumpEnd):
             continue
         windowStart = int(np.floor(dumpNum/1000)*1000)
         windowEnd = int(windowStart + normBatchSize)
