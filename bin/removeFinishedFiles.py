@@ -7,11 +7,16 @@ import re
 def removeFinishedFiles(inputfile,outputdir):
     with open(inputfile,'r') as fp:
         lines=fp.readlines()
+    njobs = len(lines)
+    nremoved = 0
     with open(inputfile,'w') as fp:
         for line in lines[:]:
             outputImage = imageNamer(lineParser(line))
             if(len(glob.glob(os.path.join(outputdir,outputImage)))==0):
                 fp.write(line)
+            else:
+                nremoved+=1
+    print(f"Removed {nremoved} out of {njobs} jobs")
 
                 
                 
@@ -20,9 +25,10 @@ def removeFinishedFiles(inputfile,outputdir):
 def lineParser(line):
     vals = line.split(',')
     returnDict={}
-    returnDict['rhigh']=vals[-3]
-    returnDict['rlow']=vals[-2]
-    returnDict['theta']=vals[-1]
+    returnDict['rhigh']=vals[-4]
+    returnDict['rlow']=vals[-3]
+    returnDict['theta']=vals[-2]
+    returnDict['munit']=vals[-1]
     grmhdDump=vals[0]
     returnDict['dumpNum']=re.search("(\d{4,5}[_.])",grmhdDump)[0][:-1]
     if re.search("(sane)",grmhdDump,flags=re.I)==None:
@@ -33,7 +39,7 @@ def lineParser(line):
     return returnDict
 
 def imageNamer(modelDict):
-    return f"img_{modelDict['model']}{modelDict['spin']}_s{modelDict['dumpNum']}_Rh{modelDict['rhigh']}_i{modelDict['theta']}.h5"
+    return f"img_{modelDict['model']}{modelDict['spin']}_s{modelDict['dumpNum']}_Rh{modelDict['rhigh']}_Rl{modelDict['rlow']}_i{modelDict['theta']}.h5"
 
 if __name__=="__main__":
     removeFinishedFiles()
