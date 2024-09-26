@@ -15,14 +15,14 @@
 # implied.  See the License for the specific language governing
 # permissions and limitations under the License.
 
+outputDir=/home/abhishek.joshi/protected/m87_v3
+logDir=/home/abhishek.joshi/m87_v3
 if [ ! -f par/BATCH.ALL ]; then
 	echo 'Generate parameter file'
-	echo $1
-	bin/pargen $1 > par/BATCH.ALL
-	outputDir=/public/avjoshi2/m87_v3_images
+	echo $@
+	bin/pargen.py $@ > par/BATCH.ALL
 	#echo -e "$(bin/pargen $1)\n"
 fi
-
 if [ ! -f par/*.p00 ]; then
 	echo 'Split parameter file'
 	split -da02 -l6000 par/BATCH.ALL par/batch.p
@@ -32,9 +32,9 @@ echo 'Submit jobs'
 for f in par/batch.p??; do
 	g="par/BATCH_${1}.D${f#par/batch.p}"
 	echo -n "$f -> $g"
-	mkdir -p ${outputDir}/$1
-	mkdir -p ${outputDir}/log/$1
-	condor_submit -a "model = $1" -a "outputDir = ${outputDir}" bin/submit
+	mkdir -p ${outputDir}/${1}/${3}/${2}/
+	mkdir -p ${logDir}/log/${1}/${3}/${2}/
+	condor_submit -a "version = $1" -a "model = $2" -a "tilt = $3" -a "outputDir = ${outputDir}" -a "logdir = ${logDir}" bin/submit
 	if [ $? == 1 ]; then
 		echo STOP
 		break # submission error
@@ -42,4 +42,3 @@ for f in par/batch.p??; do
 	mv -f "$f" "$g"
 	echo 'DONE'
 done
-rm par/BATCH.ALL
