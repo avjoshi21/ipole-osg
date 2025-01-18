@@ -21,14 +21,15 @@ r="/home/abhishek.joshi/sgra_v5"
 
 cadence=1
 normBatchSize = 1000
+bh='SgrA'
 
-munitFilesStr=f"/home/abhishek.joshi/sgra_v5/munits/windows/{ext}/MunitVals_SgrA_{tilt}_{grmhdModel}*.txt"
+munitFilesStr=f"/home/abhishek.joshi/sgra_v5/munits/windows/{ext}/MunitVals_{bh}_{tilt}_{grmhdModel}*.txt"
 munitFiles = sorted(glob.glob(munitFilesStr))
 md5file = f"/home/abhishek.joshi/sgra_v5/md5/md5_{ext}_{grmhdModel}_{tilt}.txt"
 # md5file = "/home/abhishek.joshi/sgra_v5/md5/test.txt"
 for munitFile in munitFiles:
     munitData = np.loadtxt(munitFile,skiprows=1,dtype=object)
-    grmhdDirectoryStr=f"/protected/abhishek.joshi/{ext}/{disk}/{tilt}/{grmhdModel[1:]}/dumps/torus.*.h5"
+    grmhdDirectoryStr=f"/home/abhishek.joshi/protected/{ext}/{disk}/{tilt}/{grmhdModel[1:]}/dumps/torus.*.h5"
     grmhdDirectory = sorted(glob.glob(grmhdDirectoryStr))
     for grmhdFile in grmhdDirectory[::cadence]:
         if("final" in grmhdFile):
